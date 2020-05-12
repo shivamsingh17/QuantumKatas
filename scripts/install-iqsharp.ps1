@@ -23,11 +23,14 @@ if ($install) {
         dotnet tool install Microsoft.Quantum.IQSharp --version 0.11.2004.2825 --tool-path $Env:TOOLS_DIR
 
         $path = (Get-Item "$Env:TOOLS_DIR\dotnet-iqsharp*").FullName
+        $ echo $path
         & $path install --user --path-to-tool $path
         Write-Host "iq# kernel installed ($LastExitCode)"
     } catch {
         Write-Host ("iq# installation threw error: " + $_)
         Write-Host ("iq# might not be correctly installed.")
+        Write-Host ("exception: " + $_.Exception)
+        Write-Host ("error details: " + $_.ErrorDetails)
     }
 } else {
     Write-Host ("Microsoft.Quantum.IQSharp is already installed in this host.")
