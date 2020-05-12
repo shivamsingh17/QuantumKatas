@@ -21,9 +21,11 @@ if ($install) {
         Write-Host ("Installing Microsoft.Quantum.IQSharp at $Env:TOOLS_DIR")
         dotnet tool install Microsoft.Quantum.IQSharp --version 0.11.2004.2825 --tool-path $Env:TOOLS_DIR
 
+        ls $Env:TOOLS_DIR
         $path = (Get-Item "$Env:TOOLS_DIR\dotnet-iqsharp*").FullName
         & $path --version
-        & $path install --user --path-to-tool $path
+        echo $path
+        & $path install --user # --path-to-tool $path
         Write-Host "iq# kernel installed ($LastExitCode)"
     } catch {
         Write-Host ("====================================")
