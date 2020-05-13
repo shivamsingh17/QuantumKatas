@@ -58,6 +58,7 @@ function Validate {
             jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG
         } 
     } catch {
+        Write-Host('Exit code: ' + $LastExitCode)
         Write-Host ("error: " + $_)
         Write-Host ("exception: " + $_.Exception)
         Write-Host ("stacktrace: " + $_.Exception.StackTrace)

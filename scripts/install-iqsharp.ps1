@@ -23,7 +23,7 @@ if ($install) {
 
     
         $path = (Get-Item "$Env:TOOLS_DIR\dotnet-iqsharp*").FullName
-        & $path install --user --path-to-tool $path --log-level "Debug" 2>'iqsharp-install-output.txt'
+        & $path install --user --path-to-tool $path --log-level "Debug" 2 > 'iqsharp-install-output.txt'
         Write-Host "iq# kernel installed ($LastExitCode)"
         Write-Host "iq# installation output:"
         cat 'iqsharp-install-output.txt'
@@ -33,16 +33,7 @@ if ($install) {
         Write-Host ("exception: " + $_.Exception)
 
         Write-Host("========================")
-        $kernelPath = 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp'
-        Write-Host ("Examine " + $kernelPath + "\kernel.json")
-        Write-Host ("ls $kernelPath")
-        ls $kernelPath 
-        Write-Host("cat 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp\kernel.json'")
-        cat 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp\kernel.json'
-        Write-Host("jupyter kernelspec list")
-        jupyter kernelspec list
-        Write-Host "iq# installation output:"
-        cat 'iqsharp-install-output.txt'
+        Write-Host('Exit code: ' + $LastExitCode)
         Write-Host("========================")
     }
 } else {
