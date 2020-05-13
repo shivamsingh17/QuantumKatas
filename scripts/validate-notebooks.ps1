@@ -53,9 +53,9 @@ function Validate {
 
     try {
         if ($env:SYSTEM_DEBUG -eq "true") {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2> temp/output.txt
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2 > temp/output.txt
         } else {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2 > temp/output.txt
         } 
     } catch {
         Write-Host('Exit code: ' + $LastExitCode)
