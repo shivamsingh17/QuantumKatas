@@ -24,8 +24,8 @@ if ($install) {
     
         $path = (Get-Item "$Env:TOOLS_DIR\dotnet-iqsharp*").FullName
 
-        Write-Host ("& $path install --user --path-to-tool $path --log-level 'Debug' 2> $ null")
-        & $path install --user --path-to-tool $path --log-level 'Debug' 2> $null
+        Write-Host ("& cmd /c '$path install --user --path-to-tool $path'")
+        cmd /c "$path install --user --path-to-tool $path"
         Write-Host "iq# kernel installed ($LastExitCode)"
     #} catch {
     #}
