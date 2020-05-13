@@ -29,12 +29,13 @@ if ($install) {
         Write-Host ("iq# installation threw error: " + $_)
         Write-Host ("iq# might not be correctly installed.")
         Write-Host ("exception: " + $_.Exception)
-        Write-Host ("Examine " + $kernelPath + "\kernel.json")
+
         $kernelPath = 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp'
-        Write-Host ("& $kernelPath ls")
-        & $kernelPath ls
-        Write-Host("& $kernelPath cat 'kernel.json'")
-        & $kernelPath cat 'kernel.json'
+        Write-Host ("Examine " + $kernelPath + "\kernel.json")
+        Write-Host ("ls $kernelPath")
+        ls $kernelPath 
+        Write-Host("cat 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp\kernel.json'")
+        cat 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp\kernel.json'
     }
 } else {
     Write-Host ("Microsoft.Quantum.IQSharp is already installed in this host.")
