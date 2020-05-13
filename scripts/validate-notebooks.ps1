@@ -53,7 +53,7 @@ function Validate {
 
     try {
         if ($env:SYSTEM_DEBUG -eq "true") {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2> temp/output.txt
         } else {
             jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG
         } 
@@ -62,6 +62,7 @@ function Validate {
         Write-Host ("error: " + $_)
         Write-Host ("exception: " + $_.Exception)
         Write-Host ("stacktrace: " + $_.Exception.StackTrace)
+        cat temp/output.txt
     }
 
     # if jupyter returns an error code, report that this notebook is invalid:
