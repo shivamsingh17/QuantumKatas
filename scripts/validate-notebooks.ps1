@@ -53,15 +53,16 @@ function Validate {
 
     try {
         if ($env:SYSTEM_DEBUG -eq "true") {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2 > output.txt
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG > output.txt 2>&1
         } else {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2 > output.txt
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG > output.txt 2>&1
         } 
     } catch {
         Write-Host('Exit code: ' + $LastExitCode)
         Write-Host ("error: " + $_)
         Write-Host ("exception: " + $_.Exception)
         Write-Host ("stacktrace: " + $_.Exception.StackTrace)
+        Write-Host ("cat output.txt")
         cat output.txt
     }
 
