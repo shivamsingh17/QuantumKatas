@@ -23,19 +23,23 @@ if ($install) {
 
     
         $path = (Get-Item "$Env:TOOLS_DIR\dotnet-iqsharp*").FullName
-        & $path install --user --path-to-tool $path
+        & $path install --user --path-to-tool $path --log-level "Debug"
         Write-Host "iq# kernel installed ($LastExitCode)"
     } catch {
         Write-Host ("iq# installation threw error: " + $_)
         Write-Host ("iq# might not be correctly installed.")
         Write-Host ("exception: " + $_.Exception)
 
+        Write-Host("========================")
         $kernelPath = 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp'
         Write-Host ("Examine " + $kernelPath + "\kernel.json")
         Write-Host ("ls $kernelPath")
         ls $kernelPath 
         Write-Host("cat 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp\kernel.json'")
         cat 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp\kernel.json'
+        Write-Host("jupyter kernelspec list")
+        jupyter kernelspec list
+        Write-Host("========================")
     }
 } else {
     Write-Host ("Microsoft.Quantum.IQSharp is already installed in this host.")
