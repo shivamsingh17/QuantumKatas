@@ -33,6 +33,7 @@ steps:
   displayName: "Testing"
   workingDirectory: $(System.DefaultWorkingDirectory)/scripts
   condition: and(succeeded(), ne(variables['Skip.Tests'], 'true'))
+  failOnStderr: false
 
 - powershell: ./pack.ps1
   displayName: "Packing"
