@@ -23,10 +23,10 @@ if ($install) {
 
     
         $path = (Get-Item "$Env:TOOLS_DIR\dotnet-iqsharp*").FullName
-        & $path install --user --path-to-tool $path --log-level "Debug" 2>&1
+        & $path install --user --path-to-tool $path --log-level "Debug" > output.txt 2>&1
         Write-Host "iq# kernel installed ($LastExitCode)"
-        Write-Host "cat stderr.txt"
-        cat stderr.txt
+        Write-Host "cat output.txt"
+        cat output.txt
     } catch {
         Write-Host ("iq# installation threw error: " + $_)
         Write-Host ("iq# might not be correctly installed.")
@@ -34,8 +34,8 @@ if ($install) {
 
         Write-Host("========================")
         Write-Host('Exit code: ' + $LastExitCode)
-        Write-Host ("cat stderr.txt")
-        cat stderr.txt
+        Write-Host "cat output.txt"
+        cat output.txt
         Write-Host("========================")
     }
 } else {
