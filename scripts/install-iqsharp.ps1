@@ -29,7 +29,11 @@ if ($install) {
         Write-Host ("iq# installation threw error: " + $_)
         Write-Host ("iq# might not be correctly installed.")
         Write-Host ("exception: " + $_.Exception)
+        Write-Host ("Examine " + $kernelPath + "\kernel.json")
         $kernelPath = 'C:\Users\VssAdministrator\AppData\Roaming\jupyter\kernels\iqsharp'
+        Write-Host ("& $kernelPath ls")
+        & $kernelPath ls
+        Write-Host("& $kernelPath cat 'kernel.json'")
         & $kernelPath cat 'kernel.json'
     }
 } else {
