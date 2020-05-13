@@ -55,7 +55,7 @@ function Validate {
         if ($env:SYSTEM_DEBUG -eq "true") {
             jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG
         } else {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG
         } 
     } catch {
         Write-Host ("error: " + $_)
