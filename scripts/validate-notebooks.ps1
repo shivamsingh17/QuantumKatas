@@ -33,6 +33,9 @@ $all_ok = $True
 function Validate {
     Param($Notebook)
 
+    
+$ErrorActionPreference = 'Continue'
+
     # Name of the notebook that will be used for checking katas.
     $CheckNotebook = 'Check.ipynb'
 
@@ -55,7 +58,7 @@ function Validate {
         if ($env:SYSTEM_DEBUG -eq "true") {
             jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2>&1 | %{ "$_"}
         } else {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 2>&1 | %{ "$_"}
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --Application.log_level=INFO 2>&1 | %{ "$_"}
         } 
     } catch {
         Write-Host('Exit code: ' + $LastExitCode)
@@ -72,6 +75,8 @@ function Validate {
     }
 
     popd
+    
+$ErrorActionPreference = 'Stop'
 }
 
 
