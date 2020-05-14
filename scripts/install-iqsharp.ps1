@@ -29,6 +29,7 @@ if ($install) {
         & $path install --user --path-to-tool $path --log-level 'Debug' 2>&1 | %{ "$_"}
         Write-Host "iq# kernel installed ($LastExitCode)"
     } catch {
+        Write-Host "exit code: ($LastExitCode)" 
     }
 } else {
     Write-Host ("Microsoft.Quantum.IQSharp is already installed in this host.")
