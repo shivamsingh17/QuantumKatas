@@ -30,6 +30,7 @@ if ($install) {
         Write-Host "iq# kernel installed ($LastExitCode)"
     } catch {
         Write-Host "exit code: ($LastExitCode)" 
+        Write-Host "exception: $_"
     }
 } else {
     Write-Host ("Microsoft.Quantum.IQSharp is already installed in this host.")
