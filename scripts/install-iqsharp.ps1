@@ -19,7 +19,6 @@ try {
 if ($install) {
     try {
         
-        Write-Error "test error"
         Write-Host ("Installing Microsoft.Quantum.IQSharp at $Env:TOOLS_DIR")
         dotnet tool install Microsoft.Quantum.IQSharp --version 0.11.2004.2825 --tool-path $Env:TOOLS_DIR
 
@@ -29,7 +28,6 @@ if ($install) {
     
         & $path install --user --path-to-tool $path --log-level 'Debug' 2>&1 | %{ "$_"}
         Write-Host "iq# kernel installed ($LastExitCode)"
-        Write-Error "test error"
     } catch {
     }
 } else {
