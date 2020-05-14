@@ -17,7 +17,7 @@ try {
 }
 
 if ($install) {
-    #try {
+    try {
         
         Write-Error "test error"
         Write-Host ("Installing Microsoft.Quantum.IQSharp at $Env:TOOLS_DIR")
@@ -30,8 +30,8 @@ if ($install) {
         & $path install --user --path-to-tool $path --log-level 'Debug' 2>&1 | %{ "$_"}
         Write-Host "iq# kernel installed ($LastExitCode)"
         Write-Error "test error"
-    #} catch {
-    #}
+    } catch {
+    }
 } else {
     Write-Host ("Microsoft.Quantum.IQSharp is already installed in this host.")
 }
