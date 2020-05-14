@@ -59,7 +59,7 @@ $ErrorActionPreference = 'Continue'
             jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2>&1 | %{ "$_"}
         } else {
             Write-Host "starting nbconvert"
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 #2>&1 | %{ "$_"}
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 *>&1 | %{ "$_"}
             Write-Host "done nbconvert"
         } 
     } catch {
