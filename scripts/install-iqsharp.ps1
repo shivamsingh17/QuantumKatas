@@ -8,6 +8,9 @@
 Write-Host ("Installing IQ# tool.")
 $install = $False
 
+$ErrorActionPreference = 'Continue'
+
+
 # Install iqsharp if not installed yet.
 try {
     $install = [string]::IsNullOrWhitespace((dotnet tool list --tool-path $Env:TOOLS_DIR | Select-String -Pattern "microsoft.quantum.iqsharp"))
@@ -35,6 +38,8 @@ if ($install) {
 } else {
     Write-Host ("Microsoft.Quantum.IQSharp is already installed in this host.")
 }
+$ErrorActionPreference = 'Stop'
+
 
 # Azure DevOps agent failing with "PowerShell exited with code '1'."
 # For now, guarantee this script succeeds:
