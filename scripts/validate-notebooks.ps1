@@ -55,13 +55,14 @@ function Validate {
         if ($env:SYSTEM_DEBUG -eq "true") {
             jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2>&1 | %{ "$_"}
         } else {
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2>&1 | %{ "$_"}
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 2>&1 | %{ "$_"}
         } 
     } catch {
         Write-Host('Exit code: ' + $LastExitCode)
         Write-Host ("error: " + $_)
         Write-Host ("exception: " + $_.Exception)
         Write-Host ("stacktrace: " + $_.Exception.StackTrace)
+        throw
     }
 
     # if jupyter returns an error code, report that this notebook is invalid:
