@@ -59,7 +59,7 @@ $ErrorActionPreference = 'Continue'
             jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 --log-level=DEBUG 2>&1 | %{ "$_"}
         } else {
             Write-Host "starting nbconvert"
-            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 #2>&1 | %{ "$_"}
+            jupyter nbconvert $CheckNotebook --execute  --ExecutePreprocessor.timeout=120 2>&1 | %{ "$_"}
             Write-Host "done nbconvert"
         } 
     } catch {
@@ -108,14 +108,14 @@ $errors = $false
 if ($Notebook -ne "") {
     # Validate only the notebook provided as the parameter (do not exclude blacklisted notebooks)
     Get-ChildItem $Notebook `
-        | ForEach-Object { $errors = (Validate $_) -or $errors }
+        | ForEach-Object { Validate $_}
 } else {
     # Validate all notebooks in the folder from which the script was executed
     Get-ChildItem (Join-Path $PSScriptRoot '..') `
         -Recurse `
         -Include '*.ipynb' `
         -Exclude $not_ready `
-            | ForEach-Object { $errors = (Validate $_) -or $errors }
+            | ForEach-Object { Validate $_ }
 }
 
 if (-not $all_ok) {
